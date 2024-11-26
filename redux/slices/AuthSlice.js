@@ -1,37 +1,35 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import AuthService from "../../src/services/AuthServices";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchEvents } from "../../service/endpoint/event";
 
-export const loginAuthThunk = createAsyncThunk('auth/login', async ({email,password},{ rejectWithValue }) => {
-    try {
-        const response = await AuthService.login(email, password);
-        return response;
-      } catch (error) {
-        return rejectWithValue(error.message || 'An unexpected error occurred');
-      }
-})
+// Async thunk untuk memanggil API
+export const getEvents = createAsyncThunk("event/getEvents", async () => {
+  const response = await fetchEvents();
+  return response.data;
+});
 
-const authSlice = createSlice({
-    name: 'auth',
-    initialState: {
-        items: [],
-        loading : false,
-        error: null
-    },
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.
-            addCase(loginAuthThunk.pending,(state) => {
-                state.loading = true
-            })
-            .addCase(loginAuthThunk.fulfilled, (state, action) => {
-                state.loading = false
-                state.items = action.payload
-            })
-            .addCase(loginAuthThunk.rejected, (state, action) => {
-                state.loading = false
-                state.error = "Failed to fetch login"
-            })
-    }
-})
+// Slice untuk event
+const eventSlice = createSlice({
+  name: "event",
+  initialState: {
+    events: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getEvents.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getEvents.fulfilled, (state, action) => {
+        state.loading = false;
+        state.events = action.payload;
+      })
+      .addCase(getEvents.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
+});
 
-export default authSlice.reducer
+export default eventSlice.reducer;
