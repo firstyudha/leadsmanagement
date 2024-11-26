@@ -1,14 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ route,navigation }) => {
   const { event } = route.params;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{event.title}</Text>
       <Text style={styles.date}>{event.date}</Text>
-      <Text style={styles.description}>Event details go here...</Text>
+      <Image source={{ uri: event.image }} style={styles.image} />
+      <Text style={styles.description}>{event.description}</Text>
+      <Button
+        onPress={() => navigation.push("Lead", { data: event })}
+        title="Ambil Promonya Sekarang"
+        color="#841584"
+      />
     </View>
   );
 };
@@ -32,6 +38,11 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: "#333",
+  },
+  image: {
+    width: '100%',
+    height: 150,
+    resizeMode: 'cover',
   },
 });
 

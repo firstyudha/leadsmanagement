@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
+import LeadScreen from '../screens/LeadScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +28,7 @@ export default function MainTabNavigator() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Detail" component={DetailScreen} />
+      <Tab.Screen name="Lead" component={LeadScreen} />
     </Tab.Navigator>
   );
 }
