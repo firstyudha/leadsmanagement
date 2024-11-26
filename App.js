@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
-import { WelcomeScreen } from './src/screens/WelcomeScreen'
+import WelcomeScreen from './src/screens/WelcomeScreen'
 
 const Stack = createNativeStackNavigator();
 
