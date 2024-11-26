@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchEvents } from "../../service/endpoint/event";
+import { fetchEvents } from "../../src/services/EventServices";
 
 // Async thunk untuk memanggil API
 export const getEvents = createAsyncThunk("event/getEvents", async () => {
@@ -8,7 +8,7 @@ export const getEvents = createAsyncThunk("event/getEvents", async () => {
 });
 
 // Slice untuk event
-const eventSlice = createSlice({
+const EventSlice = createSlice({
   name: "event",
   initialState: {
     events: [],
@@ -32,4 +32,4 @@ const eventSlice = createSlice({
   },
 });
 
-export default eventSlice.reducer;
+export default EventSlice.reducer;

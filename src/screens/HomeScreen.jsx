@@ -1,15 +1,35 @@
 import React, { useEffect } from "react";
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { getEvents } from "../redux/slices/eventSlice";
+import { getEvents } from "../../redux/slices/EventSlice";
 
 const HomeScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const { events, loading, error } = useSelector((state) => state.event);
+  const events = [
+    {
+      id: "1",
+      title: "BAF Festival Perlengkapan Rumah Tangga",
+      date: "2024/11/19",
+      image: "https://via.placeholder.com/150", // Ganti dengan URL gambar
+    },
+    {
+      id: "2",
+      title: "BAF Festival Motor Baru Yamaha",
+      date: "2024/11/18",
+      image: "https://via.placeholder.com/150", // Ganti dengan URL gambar
+    },
+    {
+      id: "3",
+      title: "BAF Expo Batulicin",
+      date: "2024/11/18",
+      image: "https://via.placeholder.com/150", // Ganti dengan URL gambar
+    },
+  ];
+  // const dispatch = useDispatch();
+  // const { events, loading, error } = useSelector((state) => state.event);
 
-  useEffect(() => {
-    dispatch(getEvents());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getEvents());
+  // }, [dispatch]);
 
   const renderEvent = ({ item }) => (
     <TouchableOpacity
@@ -21,13 +41,13 @@ const HomeScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
+  // if (loading) {
+  //   return <Text>Loading...</Text>;
+  // }
 
-  if (error) {
-    return <Text>Error: {error}</Text>;
-  }
+  // if (error) {
+  //   return <Text>Error: {error}</Text>;
+  // }
 
   return (
     <View style={styles.container}>

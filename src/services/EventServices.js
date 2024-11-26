@@ -3,7 +3,7 @@ import {
     API_LOGIN
 } from './endpoints'
 
-const login = async (email, password) => {
+const fetchEvents = async (email, password) => {
   try {
     const response = await axios.post(API_LOGIN, {
       username: email,
@@ -16,5 +16,5 @@ const login = async (email, password) => {
 };
 
 export default {
-  login,
+  fetchEvents,
 };
