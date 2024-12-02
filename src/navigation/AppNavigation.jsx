@@ -2,8 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../screens/HomeScreen";
-import DetailScreen from "../screens/DetailScreen";
-import LeadScreen from "../screens/LeadScreen";
+import { AppNavigation as NewScr } from "react-native-sdk-leads";
 
 const Stack = createStackNavigator();
 
@@ -12,8 +11,7 @@ const AppNavigation = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
-        <Stack.Screen name="Lead" component={LeadScreen} />
+        <Stack.Screen name="Promo" options={{ headerShown: false }}  component={NewScr} />
       </Stack.Navigator>
     </NavigationContainer>
   );
